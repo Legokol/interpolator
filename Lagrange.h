@@ -8,10 +8,10 @@ using std::vector;
 class Lagrange {
 public:
 
-    Lagrange(vector<double> x, vector<double> f) : x0(x), f0(f) {
+    Lagrange(vector<double> x, vector<double> f) : x0(x) {
         a.resize(x0.size());
         for (int k = 0; k < a.size(); ++k) {
-            a[k] = f0[k];
+            a[k] = f[k];
             for (int i = 0; i < a.size(); ++i) {
                 if (i != k) {
                     a[k] /= (x0[k] - x0[i]);
@@ -35,7 +35,6 @@ public:
 
 private:
     vector<double> x0;
-    vector<double> f0;
     vector<double> a;
 };
 
