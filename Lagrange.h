@@ -8,17 +8,27 @@ using std::vector;
 class Lagrange {
 public:
 
-    Lagrange(vector<double> x, vector<double> f) : x0(x), f0(f) {}
+    Lagrange(vector<double> x, vector<double> f) : x0(x), f0(f) {
+        a.resize(x0.size());
+        for (int k = 0; k < a.size(); ++k) {
+            a[k] = f0[k];
+            for (int i = 0; i < a.size(); ++i) {
+                if (i != k) {
+                    a[k] /= (x0[k] - x0[i]);
+                }
+            }
+        }
+    }
 
     double interpolate(double x) {
-        vector<double> l(x0.size(), 1);
+        vector<double> l(a);
         double f = 0;
         for (int k = 0; k < l.size(); ++k) {
-            for (int i = 0; i < x0.size(); ++i) {
+            for (int i = 0; i < l.size(); ++i) {
                 if (i != k)
-                    l[k] *= (x - x0[i]) / (x0[k] - x0[i]);
+                    l[k] *= (x - x0[i]);
             }
-            f += l[k] * f0[k];
+            f += l[k];
         }
         return f;
     }
@@ -26,6 +36,7 @@ public:
 private:
     vector<double> x0;
     vector<double> f0;
+    vector<double> a;
 };
 
 
