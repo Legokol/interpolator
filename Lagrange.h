@@ -21,14 +21,14 @@ public:
     }
 
     double interpolate(double x) {
-        vector<double> l(a);
         double f = 0;
-        for (int k = 0; k < l.size(); ++k) {
-            for (int i = 0; i < l.size(); ++i) {
+        for (int k = 0; k < a.size(); ++k) {
+            double d = a[k];
+            for (int i = 0; i < x0.size(); ++i) {
                 if (i != k)
-                    l[k] *= (x - x0[i]);
+                    d *= (x - x0[i]);
             }
-            f += l[k];
+            f += d;
         }
         return f;
     }
