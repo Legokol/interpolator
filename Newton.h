@@ -10,6 +10,17 @@ class Newton {
 public:
 
     Newton(vector<double> x, vector<double> f) : x0(x) {
+        if (x.size() != f.size()) {
+            throw -1;
+        }
+        for (int i = 0; i < x.size() - 1; ++ i) {
+            for (int j = i + 1; j < x.size(); ++j) {
+                if (x[i] == x[j]) {
+                    throw -1;
+                }
+            }
+        }
+
         vector<vector<double>> dd(x0.size());
         a.resize(x0.size());
         a[0] = f[0];

@@ -9,6 +9,17 @@ class Lagrange {
 public:
 
     Lagrange(vector<double> x, vector<double> f) : x0(x) {
+        if (x.size() != f.size()) {
+            throw -1;
+        }
+        for (int i = 0; i < x.size() - 1; ++ i) {
+            for (int j = i + 1; j < x.size(); ++j) {
+                if (x[i] == x[j]) {
+                    throw -1;
+                }
+            }
+        }
+
         a.resize(x0.size());
         for (int k = 0; k < a.size(); ++k) {
             a[k] = f[k];
