@@ -5,12 +5,12 @@
 
 using std::vector;
 
-
+template <typename T>
 class Newton {
 public:
 
-    Newton(vector<double> x, vector<double> f) : x0(x) {
-        vector<vector<double>> dd(x0.size());
+    Newton(vector<T> x, vector<T> f) : x0(x) {
+        vector<vector<T>> dd(x0.size());
         a.resize(x0.size());
         a[0] = f[0];
         dd[0] = f;
@@ -23,10 +23,10 @@ public:
         }
     }
 
-    double interpolate(double x) {
-        double f = a[0];
+    T interpolate(T x) {
+        T f = a[0];
         for (int k = 1; k < a.size(); ++k) {
-            double d = a[k];
+            T d = a[k];
             for (int i = 0; i < k; ++i) {
                 d *= (x - x0[i]);
             }
@@ -36,8 +36,8 @@ public:
     }
 
 private:
-    vector<double> x0;
-    vector<double> a;
+    vector<T> x0;
+    vector<T> a;
 };
 
 
