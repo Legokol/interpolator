@@ -8,7 +8,7 @@ using std::vector;
 class Lagrange {
 public:
 
-    Lagrange(vector<double> x, vector<double> f) : x0(x) {
+    Lagrange(const vector<double> &x, const vector<double> &f) : x0(x) {
         if (x.size() != f.size()) {
             throw -1;
         }

@@ -9,7 +9,7 @@ using std::vector;
 class Newton {
 public:
 
-    Newton(vector<double> x, vector<double> f) : x0(x) {
+    Newton(const vector<double> &x, const vector<double> &f) : x0(x) {
         if (x.size() != f.size()) {
             throw -1;
         }
